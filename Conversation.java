@@ -3,19 +3,38 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+/**
+* The Conversation program implements a chatbot that builds a simple
+* back-and-forth dialogue with the user. It will first prompt the user to input
+* an integer representing the number of rounds of conversation. Then it
+* will print messages responding to the user and accepting responses until the
+* number of rounds requested is reached. The bot will either mirror the user
+* input base on a series of mirror words or generate a random response. Finally,
+* it will say its final goodbye before printing a transcript of the entire
+* conversation.
+*
+* @author  Vivian Wei
+* @version 1.0
+* @since   2022-9-20
+*/
+
 class Conversation {
 
   public static void main(String[] arguments) {
-    //initialize
+    //initialize chatbot
     System.out.println("Welcome to the Java ChatBot!");
     //create a scanner that takes input from user
     Scanner input1 = new Scanner(System.in);
-    //prompt
+    //prompt user to enter number of rounds of conversation
     System.out.print("How many rounds? ");
     int numRounds = input1.nextInt();
     //create an array of random response
-    String[] bot_response = {"Interesting", "Got it", "What do you mean?","Tell me more..."
-    };
+    String[] bot_response = {"Interesting", 
+                            "Got it", 
+                            "What do you mean?",
+                            "Tell me more..."
+                            };
     //create an array of words to mirror and an array of replacements
     String[] toMirror= {"I","me","am","you","are","my","your","you.","I'm","myself"};
     String[] replacement={"you","you","are","I","am","your","my","me","You're","yourself"};
@@ -37,7 +56,8 @@ class Conversation {
       String[] copy_userInput = splitted_userInput.clone();
       Boolean hasMirror=false;
 
-      //create a nested loop within the rounds to check for mirror words and add replacement
+      //create a nested loop within the rounds to check for mirror words and add
+      //replacement
       for(int j = 0; j<splitted_userInput.length;j++){
        for (int k=0; k<toMirror.length;k++){
           // System.out.print("j="+j+" "+"k="+k);
