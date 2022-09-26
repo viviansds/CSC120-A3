@@ -49,7 +49,7 @@ class Conversation {
     //start rounds
     for(int i = 0; i<numRounds; i++){
       //create a different scanner for user input during the rounds
-      try (Scanner input2 = new Scanner(System.in)) {
+      Scanner input2 = new Scanner(System.in);
       String userInput = input2.nextLine();
       Transcript.add(userInput);
       //split up the user input to check mirror
@@ -86,12 +86,11 @@ class Conversation {
         Transcript.add(reply);
       }
     }
-  }
     //end round and print transcript
     System.out.println("Thank you and bye!");
     Transcript.add("Thank you and bye!");
     String Final_Transcript = String.join("\n",Transcript);
     System.out.println("\n"+Final_Transcript);
-    }
+   }
   }
 }
