@@ -25,7 +25,7 @@ class Conversation {
     //initialize chatbot
     System.out.println("Welcome to the Java ChatBot!");
     //create a scanner that takes input from user
-    Scanner input1 = new Scanner(System.in);
+    try (Scanner input1 = new Scanner(System.in)) {
     //prompt user to enter number of rounds of conversation
     System.out.print("How many rounds? ");
     int numRounds = input1.nextInt();
@@ -33,7 +33,9 @@ class Conversation {
     String[] bot_response = {"Interesting", 
                             "Got it", 
                             "What do you mean?",
-                            "Tell me more..."
+                            "Tell me more...",
+                            "I'm not sure about that...",
+                            "Sure!"
                             };
     //create an array of words to mirror and an array of replacements
     String[] toMirror= {"I","me","am","you","are","my","your","you.","I'm","myself"};
@@ -43,11 +45,11 @@ class Conversation {
     Transcript.add("Transcript:");
     System.out.println("Hi there! What's on your mind?");
     Transcript.add("Hi there! What's on your mind?");
-
+    
     //start rounds
     for(int i = 0; i<numRounds; i++){
       //create a different scanner for user input during the rounds
-      Scanner input2 = new Scanner(System.in);
+      try (Scanner input2 = new Scanner(System.in)) {
       String userInput = input2.nextLine();
       Transcript.add(userInput);
       //split up the user input to check mirror
@@ -56,15 +58,13 @@ class Conversation {
       String[] copy_userInput = splitted_userInput.clone();
       Boolean hasMirror=false;
 
-      //create a nested loop within the rounds to check for mirror words and add
-      //replacement
+      //create a nested loop to check for mirror words and add replacement
       for(int j = 0; j<splitted_userInput.length;j++){
-       for (int k=0; k<toMirror.length;k++){
-          // System.out.print("j="+j+" "+"k="+k);
+        for (int k=0; k<toMirror.length;k++){
+        //If the splitted user input matches one of the mirror words, change the
+        //word to its corresponding replacement
           if (splitted_userInput[j].equals(toMirror[k])){
-            // System.out.print("j="+j+"k="+k);
             copy_userInput[j] = replacement[k];
-            // System.out.println("new replacement="+copy_userInput[j]);
             hasMirror=true;
           }
         }
@@ -86,10 +86,12 @@ class Conversation {
         Transcript.add(reply);
       }
     }
+  }
     //end round and print transcript
     System.out.println("Thank you and bye!");
     Transcript.add("Thank you and bye!");
     String Final_Transcript = String.join("\n",Transcript);
     System.out.println("\n"+Final_Transcript);
-}
+    }
+  }
 }
