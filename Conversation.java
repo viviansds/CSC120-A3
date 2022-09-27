@@ -45,10 +45,11 @@ class Conversation {
     Transcript.add("Transcript:");
     System.out.println("Hi there! What's on your mind?");
     Transcript.add("Hi there! What's on your mind?");
+    //create a different scanner for user input during the rounds 
     try(Scanner input2 = new Scanner(System.in)){
     //start rounds
     for(int i = 0; i<numRounds; i++){
-      //create a different scanner for user input during the rounds
+      //call the scanner inside the loop to accept multiple inputs
       String userInput = input2.nextLine();
       Transcript.add(userInput);
       //split up the user input to check mirror
