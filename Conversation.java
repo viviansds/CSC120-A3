@@ -25,7 +25,7 @@ class Conversation {
     //initialize chatbot
     System.out.println("Welcome to the Java ChatBot!");
     //create a scanner that takes input from user
-    try (Scanner input1 = new Scanner(System.in)) {
+    try (Scanner input1 = new Scanner(System.in)){
     //prompt user to enter number of rounds of conversation
     System.out.print("How many rounds? ");
     int numRounds = input1.nextInt();
@@ -38,18 +38,17 @@ class Conversation {
                             "Sure!"
                             };
     //create an array of words to mirror and an array of replacements
-    String[] toMirror= {"I","me","am","you","are","my","your","you.","I'm","myself"};
-    String[] replacement={"you","you","are","I","am","your","my","me","You're","yourself"};
+    String[] toMirror= {"I","me","am","you","are","my","My","your","you.","I'm","myself"};
+    String[] replacement={"you","you","are","I","am","your","Your","my","me","You're","yourself"};
     //create an arraylist that can store all conversation and print out later
     ArrayList<String> Transcript = new ArrayList<String>();
     Transcript.add("Transcript:");
     System.out.println("Hi there! What's on your mind?");
     Transcript.add("Hi there! What's on your mind?");
-    
+    try(Scanner input2 = new Scanner(System.in)){
     //start rounds
     for(int i = 0; i<numRounds; i++){
       //create a different scanner for user input during the rounds
-      Scanner input2 = new Scanner(System.in);
       String userInput = input2.nextLine();
       Transcript.add(userInput);
       //split up the user input to check mirror
@@ -86,11 +85,12 @@ class Conversation {
         Transcript.add(reply);
       }
     }
+  }
     //end round and print transcript
     System.out.println("Thank you and bye!");
     Transcript.add("Thank you and bye!");
     String Final_Transcript = String.join("\n",Transcript);
     System.out.println("\n"+Final_Transcript);
-   }
+    }
   }
 }
